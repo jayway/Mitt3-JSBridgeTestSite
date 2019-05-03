@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin-top: 150px;
+
+        }
+
+        body * {
+            display: block;
+        }
+    </style>
+    <script>
+
+    const isSafari = navigator.userAgent.match(/iPhone|iPad/);
+    
+    if (isSafari) {
+        console.log("Is Safari")
+    } else {
+        console.log("Is not safari")
+    }
+
+    // pretend we finish loading AJAX requests after 1500ms
+    setTimeout(didFinishLoading, 1500);
+    
+    function didFinishLoading() {
+        window.my3Bridge.didFinishLoading();
+
+        document.getElementById("didFinishLoading").textContent = "didFinishLoading() triggered.";
+    }
+    function trackUsabilla() {
+        if (isSafari) {
+            webkit.messageHandlers.usabilla.postMessage("foobar");
+        } else {
+            window.my3Bridge.trackUsabillaEvent("fooBar");
+        }
+    }
+    function requestPush() {
+        if (isSafari) {
+            // Not tested yet - not working
+            //
+            // https://stackoverflow.com/questions/37356596/uiwebview-and-javascriptinterface-in-swift
+            //
+            // Alternative method:
+            //
+            // window.location = "my3app://my3Bridge?method=doRequestPushNotifications";
+            var msg = { method: "doRequestPushNotifications" }
+            webkit.messageHandlers.fooBar.postMessage(JSON.stringify(msg));
+        } else { // Android
+            window.my3Bridge.doRequestPushNotifications();
+        }
+        
+    }
+
+    window.my3BridgeCallbacks = {
+        didReceivePushToken(token) {
+            document.getElementById("pushToken").textContent = "Received push token: " + token;
+        },
+    };
+
+
+    </script>
+</head>
+<body>
+
+    <h1>Test Javascript bridge</h1>
+
+    <p id="didFinishLoading"></p>
+
+    <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
+
+    <button type="button" onclick="requestPush()">Request push notifications</button>
+
+    <p id="pushToken"></p>
+</body>
+</html>
