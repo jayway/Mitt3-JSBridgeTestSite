@@ -36,10 +36,15 @@
         }
     }
     function setUsabillaCustomVariables() {
+        const variables = { "foo": "bar", "hello": 123 };
+        
         if (isIOS) {
             window.webkit.messageHandlers.usabilla.postMessage("fooBar");
         } else {
-            window.my3Bridge.setUsabillaCustomVariables({ "foo": "bar", "hello": 123 });
+            // Android JS bridge can only take method arguments as primitive types (strings, numbers, booleans), not objects.
+            // Workaround is to send JS object as a JSON string.
+            // More info: https://stackoverflow.com/a/2251691
+            window.my3Bridge.setUsabillaCustomVariables(JSON.stringify(variables));
         }
     }
     function requestPush() {
