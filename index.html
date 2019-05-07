@@ -16,7 +16,7 @@
     </style>
     <script>
         
-    const isIOS = (window.webkit !== undefined);
+    var isIOS = (window.webkit !== undefined);
 
     // pretend we finish loading AJAX requests after 1500ms
     setTimeout(didFinishLoading, 1500);
@@ -36,7 +36,7 @@
         }
     }
     function setUsabillaCustomVariables() {
-        const variables = { "foo": "bar", "hello": 123 };
+        var variables = { "foo": "bar", "hello": 123 };
         
         if (isIOS) {
             window.webkit.messageHandlers.setUsabillaCustomVariables.postMessage(variables);
@@ -58,7 +58,7 @@
     }
 
     window.my3BridgeCallbacks = {
-        didReceivePushToken(token) {
+        didReceivePushToken: function(token) {
             document.getElementById("pushToken").textContent = "Received push token: " + token;
         },
     };
