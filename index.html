@@ -23,7 +23,6 @@
     
     function didFinishLoading() {
         if (isIOS) {
-            document.getElementById("pushToken").textContent = "Did Finish";
             window.webkit.messageHandlers.didFinishLoading.postMessage("");
         } else {
             window.my3Bridge.didFinishLoading();
