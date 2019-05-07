@@ -39,7 +39,7 @@
         const variables = { "foo": "bar", "hello": 123 };
         
         if (isIOS) {
-            window.webkit.messageHandlers.usabilla.postMessage("fooBar");
+            window.webkit.messageHandlers.setUsabillaCustomVariables.postMessage(variables);
         } else {
             // Android JS bridge can only take method arguments as primitive types (strings, numbers, booleans), not objects.
             // Workaround is to send JS object as a JSON string.
