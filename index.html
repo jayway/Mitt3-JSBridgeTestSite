@@ -52,8 +52,10 @@
     }
     function requestPush() {
         if (isIOS) {
-            var msg = { method: "doRequestPushNotifications" }
-            window.webkit.messageHandlers.fooBar.postMessage(JSON.stringify(msg));
+            // Not implemented
+            //
+            // var msg = { method: "doRequestPushNotifications" }
+            // window.webkit.messageHandlers.fooBar.postMessage(JSON.stringify(msg));
         } else {
             window.my3Bridge.doRequestPushNotifications();
         }
