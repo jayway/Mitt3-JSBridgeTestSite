@@ -30,7 +30,7 @@
     }
     function trackUsabilla() {
         if (isIOS) {
-            window.webkit.messageHandlers.usabilla.postMessage("fooBar");
+            window.webkit.messageHandlers.trackUsabillaEvent.postMessage("fooBar");
         } else {
             window.my3Bridge.trackUsabillaEvent("fooBar");
         }
