@@ -47,6 +47,13 @@
             window.my3Bridge.setUsabillaCustomVariables(JSON.stringify(variables));
         }
     }
+    function loadUsabillaForm() {
+        if (isIOS) {
+            window.webkit.messageHandlers.loadUsabillaForm.postMessage("fooBar");
+        } else {
+            window.my3Bridge.loadUsabillaForm("fooBar");
+        }
+    }
     function requestPush() {
         if (isIOS) {
             var msg = { method: "doRequestPushNotifications" }
@@ -75,6 +82,8 @@
     <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
     
     <button type="button" onclick="setUsabillaCustomVariables()">Set Usabilla Custom Variables</button>
+
+    <button type="button" onclick="loadUsabillaForm()">Load Usabilla Form</button>
 
     <button type="button" onclick="requestPush()">Request push notifications</button>
 
