@@ -23,6 +23,8 @@
         } else {
             window.my3Bridge.didFinishLoading();
         }
+        
+        document.getElementById("didFinishLoading").textContent = "didFinishLoading() was triggered.";
     }
     function trackUsabilla() {
         if (isIOS) {
