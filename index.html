@@ -61,7 +61,14 @@
         } else {
             window.my3Bridge.doRequestPushNotifications();
         }
-        
+    }
+
+    function setLocale() {
+        if (isIOS) {
+            window.webkit.messageHandlers.setLocale.postMessage("se");
+        } else {
+            window.my3Bridge.setLocale("se");
+        }
     }
 
     window.my3BridgeCallbacks = {
@@ -86,6 +93,8 @@
     <button type="button" onclick="loadUsabillaForm()">Load Usabilla Form</button>
 
     <button type="button" onclick="requestPush()">Request push notifications</button>
+
+    <button type="button" onclick="setLocale()">Set locale to se</button>
 
     <p id="pushToken"></p>
 </body>
