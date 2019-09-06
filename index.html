@@ -65,9 +65,9 @@
 
     function setLocale() {
         if (isIOS) {
-            window.webkit.messageHandlers.setLocale.postMessage("se");
+            window.webkit.messageHandlers.setLocale.postMessage("sv");
         } else {
-            window.my3Bridge.setLocale("se");
+            window.my3Bridge.setLocale("sv");
         }
     }
 
@@ -94,7 +94,7 @@
 
     <button type="button" onclick="requestPush()">Request push notifications</button>
 
-    <button type="button" onclick="setLocale()">Set locale to se</button>
+    <button type="button" onclick="setLocale()">Set locale to sv</button>
 
     <a href="https://www.w3schools.com/html/">Internal Link Test</a>
 
