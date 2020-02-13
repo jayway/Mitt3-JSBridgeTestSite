@@ -62,6 +62,14 @@
             window.my3Bridge.doRequestPushNotifications();
         }
     }
+        
+    function clearCache() {
+         if (isIOS) {
+
+        } else {
+            window.my3Bridge.clearCache();
+        }
+    }
 
     function setLocale() {
         if (isIOS) {
@@ -95,6 +103,8 @@
     <button type="button" onclick="requestPush()">Request push notifications</button>
 
     <button type="button" onclick="setLocale()">Set locale to sv</button>
+    
+     <button type="button" onclick="clearCache()">clear Cache</button>
 
     <a href="https://www.w3schools.com/html/">Internal Link Test</a>
 
