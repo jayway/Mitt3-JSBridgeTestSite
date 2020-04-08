@@ -70,6 +70,15 @@
             window.my3Bridge.clearCache();
         }
     }
+        
+        function downloadPdf(){
+              if (isIOS) {
+
+        } else {
+              window.my3Bridge.downloadPdf('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf');
+        }
+          
+        }
 
     function setLocale() {
         if (isIOS) {
@@ -105,6 +114,8 @@
     <button type="button" onclick="setLocale()">Set locale to sv</button>
     
      <button type="button" onclick="clearCache()">clear Cache</button>
+    
+    <button type="button" onclick="downloadPdf()">download pdf</button>
 
     <a href="https://www.w3schools.com/html/">Internal Link Test</a>
 
