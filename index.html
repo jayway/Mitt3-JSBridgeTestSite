@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>JSBridgeTest</title>
     <style>
         body * {
             display: block;
@@ -12,94 +12,106 @@
     </style>
     <script>
         
-    var isIOS = (window.webkit !== undefined);
+        var isIOS = (window.webkit !== undefined);
 
-    // pretend we finish loading AJAX requests after 1500ms
-    setTimeout(didFinishLoading, 1500);
-    
-    function didFinishLoading() {
-        if (isIOS) {
-            window.webkit.messageHandlers.didFinishLoading.postMessage("");
-        } else {
-            window.my3Bridge.didFinishLoading();
-        }
-        
-        document.getElementById("didFinishLoading").textContent = "didFinishLoading() was triggered.";
-    }
-    function trackUsabilla() {
-        if (isIOS) {
-            window.webkit.messageHandlers.trackUsabillaEvent.postMessage("fooBar");
-        } else {
-            window.my3Bridge.trackUsabillaEvent("fooBar");
-        }
-    }
-    function setUsabillaCustomVariables() {
-        var variables = { "foo": "bar", "hello": 123 };
-        
-        if (isIOS) {
-            window.webkit.messageHandlers.setUsabillaCustomVariables.postMessage(variables);
-        } else {
-            // Android JS bridge can only take method arguments as primitive types (strings, numbers, booleans), not objects.
-            // Workaround is to send JS object as a JSON string.
-            // More info: https://stackoverflow.com/a/2251691
-            window.my3Bridge.setUsabillaCustomVariables(JSON.stringify(variables));
-        }
-    }
-    function loadUsabillaForm() {
-        if (isIOS) {
-            window.webkit.messageHandlers.loadUsabillaForm.postMessage("587344e08769278408531e64");
-        } else {
-            window.my3Bridge.loadUsabillaForm("587344e08769278408531e64");
-        }
-    }
-    function requestPush() {
-        if (isIOS) {
-            // Not implemented
-            //
-            // var msg = { method: "doRequestPushNotifications" }
-            // window.webkit.messageHandlers.fooBar.postMessage(JSON.stringify(msg));
-        } else {
-            window.my3Bridge.doRequestPushNotifications();
-        }
-    }
-        
-    function clearCache() {
-         if (isIOS) {
+        // pretend we finish loading AJAX requests after 1500ms
+        setTimeout(didFinishLoading, 1500);
 
-        } else {
-            window.my3Bridge.clearCache();
-        }
-    }
-        
-        function downloadPdf(){
-              if (isIOS) {
+        function didFinishLoading() {
+            if (isIOS) {
+                window.webkit.messageHandlers.didFinishLoading.postMessage("");
+            } else {
+                window.my3Bridge.didFinishLoading();
+            }
 
-        } else {
-              window.my3Bridge.downloadPdf('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf');
-        }
-          
+            document.getElementById("didFinishLoading").textContent = "didFinishLoading() was triggered.";
         }
 
-    function setLocale() {
-        if (isIOS) {
-            window.webkit.messageHandlers.setLocale.postMessage("sv");
-        } else {
-            window.my3Bridge.setLocale("sv");
+        function trackUsabilla() {
+            if (isIOS) {
+                window.webkit.messageHandlers.trackUsabillaEvent.postMessage("fooBar");
+            } else {
+                window.my3Bridge.trackUsabillaEvent("fooBar");
+            }
         }
-    }
 
-    window.my3BridgeCallbacks = {
-        didReceivePushToken: function(token) {
-            document.getElementById("pushToken").textContent = "Received push token: " + token;
-        },
-    };
+        function setUsabillaCustomVariables() {
+            var variables = { "foo": "bar", "hello": 123 };
 
+            if (isIOS) {
+                window.webkit.messageHandlers.setUsabillaCustomVariables.postMessage(variables);
+            } else {
+                // Android JS bridge can only take method arguments as primitive types (strings, numbers, booleans), not objects.
+                // Workaround is to send JS object as a JSON string.
+                // More info: https://stackoverflow.com/a/2251691
+                window.my3Bridge.setUsabillaCustomVariables(JSON.stringify(variables));
+            }
+        }
 
+        function loadUsabillaForm() {
+            if (isIOS) {
+                window.webkit.messageHandlers.loadUsabillaForm.postMessage("587344e08769278408531e64");
+            } else {
+                window.my3Bridge.loadUsabillaForm("587344e08769278408531e64");
+            }
+        }
+
+        function requestPush() {
+            if (isIOS) {
+                // Not implemented
+                //
+                // var msg = { method: "doRequestPushNotifications" }
+                // window.webkit.messageHandlers.fooBar.postMessage(JSON.stringify(msg));
+            } else {
+                window.my3Bridge.doRequestPushNotifications();
+            }
+        }
+
+        function clearCache() {
+             if (isIOS) {
+
+            } else {
+                window.my3Bridge.clearCache();
+            }
+        }
+
+        function downloadPdf() {
+            if (isIOS) {
+            } else {
+                  window.my3Bridge.downloadPdf('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf');
+            }
+        }
+
+        function setLocale() {
+            if (isIOS) {
+                window.webkit.messageHandlers.setLocale.postMessage("sv");
+            } else {
+                window.my3Bridge.setLocale("sv");
+            }
+        }
+
+        function setMarketingCloudSDKContactKey(contactKey)
+        {
+            if (isIOS)
+            {
+                window.webkit.messageHandlers.setMarketingCloudSDKContactKey.postMessage(contactKey);
+            }
+            else
+            {
+                window.my3Bridge.setMarketingCloudSDKContactKey(contactKey);
+            }
+        }
+
+        window.my3BridgeCallbacks = {
+            didReceivePushToken: function(token) {
+                document.getElementById("pushToken").textContent = "Received push token: " + token;
+            },
+        };
     </script>
 </head>
 <body>
 
-    <h1>Test Javascript bridge</h1>
+    <h3>JSBridgeTest: version 1, 22 Apr 2020</h3>
 
     <p id="didFinishLoading"></p>
 
@@ -113,7 +125,7 @@
 
     <button type="button" onclick="setLocale()">Set locale to sv</button>
     
-     <button type="button" onclick="clearCache()">clear Cache</button>
+    <button type="button" onclick="clearCache()">clear Cache</button>
     
     <button type="button" onclick="downloadPdf()">download pdf</button>
 
@@ -126,8 +138,28 @@
     <a href="mitt3://testing">Open app mitt3://</a>
 
     <a href="mitt3://installningar">Open app mitt3://installningar</a>
-    
 
     <p id="pushToken"></p>
+
+
+    <!--
+
+        To Do:
+
+        • Bridge API will provide an ID to use as contact key.
+        • Aktivera: registerMarketingCloud(contactKey: string)
+        • Avaktivera (om det går): deregisterMarketingCloud()
+
+    -->
+
+
+    <div style="border:1px solid gray;">
+        MarketingCloudSDK:<br>
+        <button type="button" onclick="setMarketingCloudSDKContactKey('159638052927752238671950287949')">Hardcoded contactKey @ henrik.ed@tre.se</button>
+        <button type="button" onclick="setMarketingCloudSDKContactKey('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
+        <button type="button" onclick="" disabled>Deregister… To Do</button>
+    </div>
+
+
 </body>
 </html>
