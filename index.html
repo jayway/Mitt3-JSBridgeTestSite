@@ -90,15 +90,15 @@
             }
         }
 
-        function setMarketingCloudSDKContactKey(contactKey)
+        function registerMarketingCloud(contactKey)
         {
             if (isIOS)
             {
-                window.webkit.messageHandlers.setMarketingCloudSDKContactKey.postMessage(contactKey);
+                window.webkit.messageHandlers.registerMarketingCloud.postMessage(contactKey);
             }
             else
             {
-                window.my3Bridge.setMarketingCloudSDKContactKey(contactKey);
+                window.my3Bridge.registerMarketingCloud(contactKey);
             }
         }
 
@@ -111,7 +111,7 @@
 </head>
 <body>
 
-    <h3>JSBridgeTest: version 1, 22 Apr 2020</h3>
+    <h3>JSBridgeTest: version 2, 23 Apr 2020</h3>
 
     <p id="didFinishLoading"></p>
 
@@ -142,22 +142,11 @@
     <p id="pushToken"></p>
 
 
-    <!--
-
-        To Do:
-
-        • Bridge API will provide an ID to use as contact key.
-        • Aktivera: registerMarketingCloud(contactKey: string)
-        • Avaktivera (om det går): deregisterMarketingCloud()
-
-    -->
-
-
     <div style="border:1px solid gray;">
         MarketingCloudSDK:<br>
-        <button type="button" onclick="setMarketingCloudSDKContactKey('159638052927752238671950287949')">Hardcoded contactKey @ henrik.ed@tre.se</button>
-        <button type="button" onclick="setMarketingCloudSDKContactKey('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
-        <button type="button" onclick="" disabled>Deregister… To Do</button>
+        <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949')">Hardcoded contactKey @ henrik.ed@tre.se</button>
+        <button type="button" onclick="registerMarketingCloud('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
+        <button type="button" onclick="deregisterMarketingCloud()" disabled>Deregister… To Do</button>
     </div>
 
 
