@@ -114,6 +114,18 @@
             }
         }
 
+        function debugMarketingCloud()
+        {
+            if (isIOS)
+            {
+                window.webkit.messageHandlers.debugMarketingCloud.postMessage();
+            }
+            else
+            {
+                window.my3Bridge.debugMarketingCloud();
+            }
+        }
+
         window.my3BridgeCallbacks = {
             didReceivePushToken: function(token) {
                 document.getElementById("pushToken").textContent = "Received push token: " + token;
@@ -159,6 +171,7 @@
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949')">Hardcoded contactKey @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
         <button type="button" onclick="deregisterMarketingCloud()" disabled>Deregister… To Do</button>
+        <button type="button" onclick="debugMarketingCloud()">Debug</button>
     </div>
 
 
