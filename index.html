@@ -127,11 +127,11 @@
         }
 
         // Error
-        function triggerError(type, message) {
+        function triggerError() {
             if (isIOS) {
-                window.webkit.messageHandlers.triggerView.postMessage(type, error);
+                window.webkit.messageHandlers.triggerView.postMessage();
             } else {
-                window.my3Bridge.postMessage(type, error);
+                window.my3Bridge.postMessage();
             }
         }
 
