@@ -165,10 +165,19 @@
 
     <p id="pushToken"></p>
 
+    <div style="border:1px solid gray;" margin='10px'>
+        <label for="cars">Error type:</label>
+    <select id="cars">
+    <option value="volvo">Maintenance</option>
+    <option value="saab">Error</option>
+    <option value="mercedes">Not found</option>
+    </select>
+    </div>
+
 
     <div style="border:1px solid gray;">
         MarketingCloudSDK:<br>
-        <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949', 'SEB')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
+        <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'SEB')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949', 'SEC')">Hardcoded contactKey SEC @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
         <button type="button" onclick="deregisterMarketingCloud()" disabled>Deregister… To Do</button>
