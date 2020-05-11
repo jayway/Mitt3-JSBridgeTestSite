@@ -127,11 +127,13 @@
         }
 
         // Error
-        function triggerError(type, message) {
+        function triggerError(type) {
+            if (type == 'none') return
+            console.log(type)
             if (isIOS) {
-                window.webkit.messageHandlers.triggerView.postMessage(type, error);
+                window.webkit.messageHandlers.triggerView.postMessage(type);
             } else {
-                window.my3Bridge.postMessage(type, error);
+                window.my3Bridge.postMessage(type);
             }
         }
 
@@ -175,14 +177,14 @@
     <p id="pushToken"></p>
 
     <div style="border:1px solid gray;" margin='10px'>
-        <label for="type">Error type:</label>
-    <select id="error">
-    <option value="maintenance" onclick="triggerError('Maintenance', 'The app is unavailable due to maintenance')">Maintenance</option>
-    <option value="error">Error</option>
-    <option value="notFound">Not found</option>
+       <b> <label for="type">Error type:</label> <b>
+    <select id="errorType" onchange="triggerError(this.options[this.selectedIndex].value)">
+     <option value="none">Select error type</option>
+    <option value="Maintenance">Maintenance</option>
+    <option value="Error">Error</option>
+    <option value="NotFound">Not found</option>
     </select>
     </div>
-
 
     <div style="border:1px solid gray;">
         MarketingCloudSDK:<br>
