@@ -126,6 +126,15 @@
             }
         }
 
+        // Error
+        function triggerError(type, message) {
+            if (isIOS) {
+                window.webkit.messageHandlers.triggerView.postMessage(type, error);
+            } else {
+                window.my3Bridge.postMessage(type, error);
+            }
+        }
+
         window.my3BridgeCallbacks = {
             didReceivePushToken: function(token) {
                 document.getElementById("pushToken").textContent = "Received push token: " + token;
@@ -166,11 +175,11 @@
     <p id="pushToken"></p>
 
     <div style="border:1px solid gray;" margin='10px'>
-        <label for="cars">Error type:</label>
-    <select id="cars">
-    <option value="volvo">Maintenance</option>
-    <option value="saab">Error</option>
-    <option value="mercedes">Not found</option>
+        <label for="type">Error type:</label>
+    <select id="error">
+    <option value="maintenance" onclick="triggerError(type='Maintenance', message='The view is unavailable due to maintenance')">Maintenance</option>
+    <option value="error">Error</option>
+    <option value="notFound">Not found</option>
     </select>
     </div>
 
