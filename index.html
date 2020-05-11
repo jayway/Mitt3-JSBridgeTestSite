@@ -127,11 +127,11 @@
         }
 
         // Error
-        function triggerError() {
+        function triggerError(type, message) {
             if (isIOS) {
-                window.webkit.messageHandlers.triggerView.postMessage();
+                window.webkit.messageHandlers.triggerView.postMessage(type, error);
             } else {
-                window.my3Bridge.postMessage();
+                window.my3Bridge.postMessage(type, error);
             }
         }
 
@@ -177,7 +177,7 @@
     <div style="border:1px solid gray;" margin='10px'>
         <label for="type">Error type:</label>
     <select id="error">
-    <option value="maintenance" onclick="triggerError(type='Maintenance', message='The view is unavailable due to maintenance')">Maintenance</option>
+    <option value="maintenance" onclick="triggerError('Maintenance', 'The app is unavailable due to maintenance')">Maintenance</option>
     <option value="error">Error</option>
     <option value="notFound">Not found</option>
     </select>
