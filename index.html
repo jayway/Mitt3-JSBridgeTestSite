@@ -126,6 +126,17 @@
             }
         }
 
+        function getPDFURL() {
+            if (isIOS)
+            {
+                window.webkit.messageHandlers.getPDFURL.postMessage('https://tre.se/t/api/invoices/my3/api/v1/accounts/10076632545/invoices/521218987423/document');
+            }
+            else
+            {
+                window.my3Bridge.getPDFURL();
+            }
+        }
+
         // Error
         function triggerError(type) {
             if (type == 'none') return
