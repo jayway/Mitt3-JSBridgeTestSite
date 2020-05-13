@@ -129,11 +129,11 @@
         function getPDFURL() {
             if (isIOS)
             {
-                window.webkit.messageHandlers.getPDFURL.postMessage('https://tre.se/t/api/invoices/my3/api/v1/accounts/10076632545/invoices/521218987423/document');
+                window.webkit.messageHandlers.downloadPdf.postMessage('https://tre.se/t/api/invoices/my3/api/v1/accounts/10076632545/invoices/521218987423/document');
             }
             else
             {
-                window.my3Bridge.getPDFURL('https://tre.se/t/api/invoices/my3/api/v1/accounts/10076632545/invoices/521218987423/document');
+                window.my3Bridge.downloadPdf('https://tre.se/t/api/invoices/my3/api/v1/accounts/10076632545/invoices/521218987423/document');
             }
         }
 
