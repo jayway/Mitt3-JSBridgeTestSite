@@ -140,11 +140,25 @@
         // Error
         function triggerError(type) {
             if (type == 'none') return
-            console.log(type)
+           
+            message = {}
+            switch (type) {
+                case "error":
+                message = {type: "error", code: 500, message: "Ett fel uppstod"}
+                break 
+                case "maintenance":
+                message = {type: "maintenance", code: 404, message: "Sidan är inte tillgänglig"}
+                break
+                case "notFound":
+                message = {type: "notFound", code: 404, message: "Sidan är inte tillgänglig"}
+                
+                break
+        }
+        console.log(message)
             if (isIOS) {
-                window.webkit.messageHandlers.triggerView.postMessage(type);
+                window.webkit.messageHandlers.triggerView.postMessage(message);
             } else {
-                window.my3Bridge.postMessage(type);
+                window.my3Bridge.postMessage(message);
             }
         }
 
@@ -191,9 +205,9 @@
        <b> <label for="type">Error type:</label> <b>
     <select id="errorType" onchange="triggerError(this.options[this.selectedIndex].value)">
      <option value="none">Select error type</option>
-    <option value="Maintenance">Maintenance</option>
-    <option value="Error">Error</option>
-    <option value="NotFound">Not found</option>
+    <option value="maintenance">Maintenance</option>
+    <option value="error">Error</option>
+    <option value="notFound">Not found</option>
     </select>
     </div>
 
