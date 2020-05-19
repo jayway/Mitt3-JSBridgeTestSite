@@ -92,12 +92,12 @@
 
         function selectKeySEB() {
             const key = document.getElementById("contactKeySEB").value 
-            registerMarketingCloud(key, "SEB")
+            registerMarketingCloud("" + key, "SEB")
         }
 
         function selectKeySEC() {
             const key = document.getElementById("contactKeySEC").value 
-            registerMarketingCloud(key, "SEC")
+            registerMarketingCloud("" + key, "SEC")
         }
 
         function registerMarketingCloud(contactKey, buisnessUnit)
@@ -228,7 +228,7 @@
             <label for="contactKey">SEB custom Key:</label>
              <input type="text" id="contactKeySEB" name="contactKey">
             <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
-            <label for="contactKey">SEB custom Key:</label><input type="text" id="contactKeySEC" name="contactKey">
+            <label for="contactKey">SEC custom Key:</label><input type="text" id="contactKeySEC" name="contactKey">
             <button type = "button" onclick="selectKeySEC()"> Select</button>
         </div>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'SEB')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
