@@ -90,15 +90,26 @@
             }
         }
 
+        function selectKeySEB() {
+            const key = document.getElementById("contactKeySEB").value 
+            registerMarketingCloud(key, "SEB")
+        }
+
+        function selectKeySEC() {
+            const key = document.getElementById("contactKeySEC").value 
+            registerMarketingCloud(key, "SEC")
+        }
+
         function registerMarketingCloud(contactKey, buisnessUnit)
         {
+           
             if (isIOS)
             {
                 window.webkit.messageHandlers.registerMarketingCloud.postMessage({key: contactKey, buisnessUnit: buisnessUnit});
             }
             else
             {
-                window.my3Bridge.registerMarketingCloud(contactKey);
+                window.my3Bridge.registerMarketingCloud({key: contactKey, buisnessUnit: buisnessUnit});
             }
         }
 
@@ -213,6 +224,13 @@
 
     <div style="border:1px solid gray;">
         MarketingCloudSDK:<br>
+        <div style="margin:10px">
+            <label for="contactKey">SEB custom Key:</label>
+             <input type="text" id="contactKeySEB" name="contactKey">
+            <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
+            <label for="contactKey">SEB custom Key:</label><input type="text" id="contactKeySEC" name="contactKey">
+            <button type = "button" onclick="selectKeySEC()"> Select</button>
+        </div>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'SEB')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949', 'SEC')">Hardcoded contactKey SEC @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
