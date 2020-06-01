@@ -90,6 +90,18 @@
             }
         }
 
+        function postDeepLink() {
+            const link = document.getElementById("deepLink").value 
+            if (isIOS)
+            {
+                window.webkit.messageHandlers.deepLinkTest.postMessage(link);
+            }
+            else
+            {
+                window.my3Bridge.deepLinkTest(link);
+            }
+        }
+
         function selectKeySEB() {
             const key = document.getElementById("contactKeySEB").value 
             registerMarketingCloud(key, "SEB")
@@ -218,6 +230,11 @@
     <p id="pushToken"></p>
 
     <div style="border:1px solid gray;" margin='10px'>
+        Deep links:<br>
+        <input type="text" id="deepLink" name="link">
+        <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
+    </div>
+    <div style="border:1px solid gray;" margin='10px'>
        <b> <label for="type">Error type:</label> <b>
     <select id="errorType" onchange="triggerError(this.options[this.selectedIndex].value)">
      <option value="none">Select error type</option>
@@ -229,19 +246,16 @@
 
     <div style="border:1px solid gray;">
         MarketingCloudSDK:<br>
-        <div style="margin:10px">
+        <div style="margin:5px">
             <label for="contactKey">SEB custom Key:</label>
-            
             <input type="text" id="contactKeySEB" name="contactKey">
             <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
-           
             <label for="contactKey">SEC custom Key:</label><input type="text" id="contactKeySEC" name="contactKey">
             <button type = "button" onclick="selectKeySEC()"> Select</button>
-           
             <label for="contactKey">TEST custom Key:</label><input type="text" id="contactKeyTEST" name="contactKey">
             <button type = "button" onclick="selectKeyTEST()"> Select</button>
         </div>
-        <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'TEST')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
+        <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'TEST')">Hardcoded contactKey Test @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'SEB')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949', 'SEC')">Hardcoded contactKey SEC @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
