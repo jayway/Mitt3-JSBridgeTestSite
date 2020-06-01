@@ -92,13 +92,14 @@
 
         function postDeepLink() {
             const link = document.getElementById("deepLink").value 
+            console.log(link)
             if (isIOS)
             {
-                window.webkit.messageHandlers.deepLinkTest.postMessage(link);
+                window.webkit.messageHandlers.deepLinkDebug.postMessage(link);
             }
             else
             {
-                window.my3Bridge.deepLinkTest(link);
+                window.my3Bridge.deepLinkDebug(link);
             }
         }
 
@@ -232,7 +233,7 @@
     <div style="border:1px solid gray;" margin='10px'>
         Deep links:<br>
         <input type="text" id="deepLink" name="link">
-        <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
+        <button type = "button" onclick="postDeepLink()"> Select</button> <br/>
     </div>
     <div style="border:1px solid gray;" margin='10px'>
        <b> <label for="type">Error type:</label> <b>
