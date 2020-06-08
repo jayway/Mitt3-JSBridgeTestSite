@@ -123,11 +123,11 @@
            
             if (isIOS)
             {
-                window.webkit.messageHandlers.registerMarketingCloud.postMessage({key: contactKey, buisnessUnit: buisnessUnit});
+                window.webkit.messageHandlers.registerMarketingCloud.postMessage({key: contactKey, businessUnit: buisnessUnit});
             }
             else
             {
-                window.my3Bridge.registerMarketingCloud({key: contactKey, buisnessUnit: buisnessUnit});
+                window.my3Bridge.registerMarketingCloud({key: contactKey, businessUnit: buisnessUnit});
             }
         }
 
@@ -231,7 +231,7 @@
     <p id="pushToken"></p>
 
     <div style="border:1px solid gray;" margin='10px'>
-        Deep links:<br>
+        Marketing cloud deep links:<br>
         <input type="text" id="deepLink" name="link">
         <button type = "button" onclick="postDeepLink()"> Select</button> <br/>
     </div>
