@@ -122,12 +122,14 @@
         {
            
             if (isIOS)
-            {
-                window.webkit.messageHandlers.registerMarketingCloud.postMessage({key: contactKey, businessUnit: buisnessUnit});
+            { 
+                const marketingUnit = {key: contactKey, businessUnit: buisnessUnit}
+                window.webkit.messageHandlers.registerMarketingCloud.postMessage(JSON.stringify(marketingUnit));
             }
             else
             {
-                window.my3Bridge.registerMarketingCloud({key: contactKey, businessUnit: buisnessUnit});
+                const marketingUnit = {key: contactKey, businessUnit: buisnessUnit}
+                window.my3Bridge.registerMarketingCloud(JSON.stringify(marketingUnit));
             }
         }
 
