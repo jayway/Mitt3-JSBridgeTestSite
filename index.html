@@ -190,7 +190,7 @@
                 
                 window.webkit.messageHandlers.triggerView.postMessage(JSON.stringify(message));
             } else {
-                window.my3Bridge.postMessage(JSON.stringify(message));
+                window.my3Bridge.triggerError(JSON.stringify(message));
             }
         }
 
