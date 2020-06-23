@@ -187,9 +187,10 @@
         }
         console.log(message)
             if (isIOS) {
-                window.webkit.messageHandlers.triggerView.postMessage(message);
+                
+                window.webkit.messageHandlers.triggerView.postMessage(JSON.stringify(message));
             } else {
-                window.my3Bridge.postMessage(message);
+                window.my3Bridge.postMessage(JSON.stringify(message));
             }
         }
 
