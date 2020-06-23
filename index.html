@@ -167,6 +167,10 @@
                 window.my3Bridge.downloadPdf('https://web.utk.edu/~bobannon/preparing/instructor_manual/ch6_instructor%20materials/google_docs_step_by_step_instructions.pdf');
             }
         }
+        
+        function onBack() {
+              window.my3Bridge.onBack();
+        }
 
         // Error
         function triggerError(type) {
@@ -220,6 +224,8 @@
     <button type="button" onclick="clearCache()">clear Cache</button>
     
     <button type="button" onclick="getPDFURL()">download pdf</button>
+    
+    <button type="button" onclick="onBack()">back</button>
 
     <a href="https://www.w3schools.com/html/">Internal Link Test</a>
 
