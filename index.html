@@ -202,7 +202,12 @@
             didReceivePushToken: function(token) {
                 document.getElementById("pushToken").textContent = "Received push token: " + token;
             },
+               onBack: function() {
+                  document.getElementById("onBack").textContent = "onBack Clicked";
+            },
         };
+        
+        
     </script>
 </head>
 <body>
@@ -210,6 +215,7 @@
     <h3>JSBridgeTest: version 4, 28 Apr 2020</h3>
 
     <p id="didFinishLoading"></p>
+     <p id="onBack"></p>
 
     <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
     
