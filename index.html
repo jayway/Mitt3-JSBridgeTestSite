@@ -167,6 +167,10 @@
                 window.my3Bridge.downloadPdf('https://web.utk.edu/~bobannon/preparing/instructor_manual/ch6_instructor%20materials/google_docs_step_by_step_instructions.pdf');
             }
         }
+        
+        function onBack() {
+              window.my3Bridge.onBack();
+        }
 
         function triggerPermission(type) {
             const notification = {type: type}
@@ -204,7 +208,7 @@
                 
                 window.webkit.messageHandlers.triggerView.postMessage(JSON.stringify(message));
             } else {
-                window.my3Bridge.postMessage(JSON.stringify(message));
+                window.my3Bridge.triggerError(JSON.stringify(message));
             }
         }
 
@@ -212,7 +216,12 @@
             didReceivePushToken: function(token) {
                 document.getElementById("pushToken").textContent = "Received push token: " + token;
             },
+               onBack: function() {
+                  document.getElementById("onBack").textContent = "onBack Clicked";
+            },
         };
+        
+        
     </script>
 </head>
 <body>
@@ -220,6 +229,7 @@
     <h3>JSBridgeTest: version 4, 28 Apr 2020</h3>
 
     <p id="didFinishLoading"></p>
+     <p id="onBack"></p>
 
     <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
     
@@ -234,6 +244,8 @@
     <button type="button" onclick="clearCache()">clear Cache</button>
     
     <button type="button" onclick="getPDFURL()">download pdf</button>
+    
+    <button type="button" onclick="onBack()">back</button>
 
     <a href="https://www.w3schools.com/html/">Internal Link Test</a>
 
