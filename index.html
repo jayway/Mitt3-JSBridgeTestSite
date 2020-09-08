@@ -168,6 +168,20 @@
             }
         }
 
+        function triggerPermission(type) {
+            const notification = {type: type}
+            console.log(notification)
+            if (isIOS)
+            {
+                window.webkit.messageHandlers.triggerPermissionRequest.postMessage(JSON.stringify(notification));
+            }
+            else
+            {
+                window.my3Bridge.triggerPermissionRequest(JSON.stringify(notification));
+            }
+        }
+        
+
         // Error
         function triggerError(type) {
             if (type == 'none') return
@@ -232,6 +246,12 @@
     <a href="mitt3://installningar">Open app mitt3://installningar</a>
 
     <p id="pushToken"></p>
+
+    <div style="background-color: lightsteelblue; padding-top: 4px; padding-bottom: 4px; padding-left: 4px;">
+        <h3 style="color: white; font-family: Arial, Helvetica, sans-serif;">Onboarding navigation flow </h3>
+        <button type="button" onclick="triggerPermission('notifications')">Permission notifications</button>
+        <button type="button" onclick="triggerPermission('location')">Permission locations</button>
+    </div>
 
     <div style="border:1px solid gray;" margin='10px'>
         Marketing cloud deep links:<br>
