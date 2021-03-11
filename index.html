@@ -9,6 +9,22 @@
             display: block;
             margin-bottom: 1em;
         }
+
+        details {
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        h1, h2, h3, h4, h5 {
+            margin-top: 0;
+            text-decoration: underline;
+        }
+
+        summary {
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
     <script>
         
@@ -217,8 +233,8 @@
             didReceivePushToken: function(token) {
                 document.getElementById("pushToken").textContent = "Received push token: " + token;
             },
-               onBack: function() {
-                  document.getElementById("onBack").textContent = "onBack Clicked";
+            onBack: function() {
+                document.getElementById("onBack").textContent = "onBack Clicked";
             },
         };
         
@@ -227,78 +243,87 @@
 </head>
 <body>
 
-    <h3>JSBridgeTest: version 5, 8 Sept 2020</h3>
+    <h3>Mitt3 JSBridgeTest: version 6, 11 March 2021</h3>
 
-    <p id="didFinishLoading"></p>
-    <p id="onBack"></p>
+    <p>
+        The purpose of this page is to show how the Mitt3 app Javascript web-to-native app bridge works.
+        It can be used by both web developers, Android/iOS developers and testers.
+        Please have a look at the HTML/JS source code for examples of how to use the JS bridge.
+        This page functions both as documentation/specification and testing tool.
+    </p>
 
-    <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
-    
-    <button type="button" onclick="setUsabillaCustomVariables()">Set Usabilla Custom Variables</button>
+    <p>URL: https://jayway.github.io/Mitt3-JSBridgeTestSite/</p>
 
-    <button type="button" onclick="loadUsabillaForm()">Load Usabilla Form</button>
+    <details open>
+        <summary>Callback output:</summary>
+        <p id="didFinishLoading"></p>
+        <p id="onBack"></p>
+        <p id="pushToken"></p>
+    </details>
 
-    <button type="button" onclick="requestPush()">Request push notifications</button>
+    <details open>
+        <summary>Trigger buttons</summary>
 
-    <button type="button" onclick="setLocale()">Set locale to sv</button>
-    
-    <button type="button" onclick="clearCache()">clear Cache</button>
-    
-    <button type="button" onclick="getPDFURL()">download pdf</button>
-    
-    <button type="button" onclick="onBack()">back</button>
+        <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
+        <button type="button" onclick="setUsabillaCustomVariables()">Set Usabilla Custom Variables</button>
+        <button type="button" onclick="loadUsabillaForm()">Load Usabilla Form</button>
+        <button type="button" onclick="requestPush()">Request push notifications</button>
+        <button type="button" onclick="setLocale()">Set locale to sv</button>
+        <button type="button" onclick="clearCache()">clear Cache</button>
+        <button type="button" onclick="getPDFURL()">download pdf</button>
+        <button type="button" onclick="onBack()">back</button>
+    </details>
 
-    <a href="https://www.w3schools.com/html/">Internal Link Test</a>
+    <details open>
+        <summary>Links</summary>
 
-    <a href="https://www.w3schools.com/html?external=true">External Link Test</a>
-    
-    <a href="bankid:///?autostarttoken=123abc&redirect=mitt3://returningFromSwedishBankID">Open Swedish BankID</a>
-    
-    <a href="mitt3://testing">Open app mitt3://</a>
+        <a href="https://www.w3schools.com/html/">Internal Link Test</a>
+        <a href="https://www.w3schools.com/html?external=true">External Link Test</a>
+        <a href="bankid:///?autostarttoken=123abc&redirect=mitt3://returningFromSwedishBankID">Open Swedish BankID</a>
+        <a href="mitt3://testing">Open app mitt3://</a>
+        <a href="mitt3://installningar">Open app mitt3://installningar</a>
+    </details>
 
-    <a href="mitt3://installningar">Open app mitt3://installningar</a>
-
-    <p id="pushToken"></p>
-
-    <div style="background-color: lightsteelblue; padding-top: 4px; padding-bottom: 4px; padding-left: 4px;">
-        <h3 style="color: white; font-family: Arial, Helvetica, sans-serif;">Onboarding navigation flow </h3>
+    <details open>
+        <summary>Onboarding navigation flow </summary>
         <button type="button" onclick="triggerPermission('notifications')">Permission notifications</button>
         <button type="button" onclick="triggerPermission('location')">Permission locations</button>
-    </div>
+    </details>
 
-    <div style="border:1px solid gray;" margin='10px'>
-        Marketing cloud deep links:<br>
+    <details open>
+        <summary>Marketing cloud deep links:</summary>
         <input type="text" id="deepLink" name="link">
-        <button type = "button" onclick="postDeepLink()"> Select</button> <br/>
-    </div>
-    <div style="border:1px solid gray;" margin='10px'>
-       <b> <label for="type">Error type:</label> <b>
-    <select id="errorType" onchange="triggerError(this.options[this.selectedIndex].value)">
-     <option value="none">Select error type</option>
-    <option value="maintenance">Maintenance</option>
-    <option value="error">Error</option>
-    <option value="notFound">Not found</option>
-    </select>
-    </div>
+        <button type = "button" onclick="postDeepLink()"> Select</button>
+    </details>
 
-    <div style="border:1px solid gray;">
-        MarketingCloudSDK:<br>
-        <div style="margin:5px">
-            <label for="contactKey">SEB custom Key:</label>
-            <input type="text" id="contactKeySEB" name="contactKey">
-            <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
-            <label for="contactKey">SEC custom Key:</label><input type="text" id="contactKeySEC" name="contactKey">
-            <button type = "button" onclick="selectKeySEC()"> Select</button>
-            <label for="contactKey">TEST custom Key:</label><input type="text" id="contactKeyTEST" name="contactKey">
-            <button type = "button" onclick="selectKeyTEST()"> Select</button>
-        </div>
+    <details open>
+        <summary>Error type:</summary>
+        <select id="errorType" onchange="triggerError(this.options[this.selectedIndex].value)">
+            <option value="none">Select error type</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="error">Error</option>
+            <option value="notFound">Not found</option>
+        </select>
+    </details>
+
+    <details open>
+        <summary>MarketingCloudSDK:</summary>
+
+        <label for="contactKey">SEB custom Key:</label>
+        <input type="text" id="contactKeySEB" name="contactKey">
+        <button type = "button" onclick="selectKeySEB()"> Select</button> <br/>
+        <label for="contactKey">SEC custom Key:</label><input type="text" id="contactKeySEC" name="contactKey">
+        <button type = "button" onclick="selectKeySEC()"> Select</button>
+        <label for="contactKey">TEST custom Key:</label><input type="text" id="contactKeyTEST" name="contactKey">
+        <button type = "button" onclick="selectKeyTEST()"> Select</button>
+
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'TEST')">Hardcoded contactKey Test @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287900', 'SEB')">Hardcoded contactKey SEB @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('159638052927752238671950287949', 'SEC')">Hardcoded contactKey SEC @ henrik.ed@tre.se</button>
         <button type="button" onclick="registerMarketingCloud('1029733127747762961563703191285')">Hardcoded contactKey @ Henrik Privat</button>
         <button type="button" onclick="deregisterMarketingCloud()" disabled>Deregister… To Do</button>
         <button type="button" onclick="debugMarketingCloud()">Debug</button>
-    </div>
+    </details>
 
 
 </body>
