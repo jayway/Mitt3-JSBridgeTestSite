@@ -190,20 +190,21 @@
         function triggerError(type) {
             if (type == 'none') return
            
-            message = {}
+            var message = {};
             switch (type) {
                 case "error":
-                message = {type: "error", code: 500, message: "Ett fel uppstod"}
-                break 
+                    message = {type: "error", code: 500, message: "Ett fel uppstod"};
+                    break;
                 case "maintenance":
-                message = {type: "maintenance", message: "Sidan är inte tillgänglig"}
-                break
+                    message = {type: "maintenance", message: "Sidan är inte tillgänglig"};
+                    break;
                 case "notFound":
-                message = {type: "notFound", code: 404, message: "Sidan är inte tillgänglig"}
-                
-                break
-        }
-        console.log(message)
+                    message = {type: "notFound", code: 404, message: "Sidan är inte tillgänglig"};
+                    break;
+            }
+            
+            console.log(message);
+            
             if (isIOS) {
                 
                 window.webkit.messageHandlers.triggerView.postMessage(JSON.stringify(message));
@@ -229,7 +230,7 @@
     <h3>JSBridgeTest: version 5, 8 Sept 2020</h3>
 
     <p id="didFinishLoading"></p>
-     <p id="onBack"></p>
+    <p id="onBack"></p>
 
     <button type="button" onclick="trackUsabilla()">Track Usabilla event</button>
     
